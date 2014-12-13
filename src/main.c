@@ -19,7 +19,7 @@
 #include "generic.h"
 #include "sleep.h"
 #include "hibernate.h"
-
+#include <getopt.h>
 
 /*
  * ===  FUNCTION  ======================================================================
