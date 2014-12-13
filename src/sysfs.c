@@ -24,8 +24,7 @@
  * =====================================================================================
  */
 void
-write_powerstate ( char* state )
-{
+write_powerstate ( char* state ) {
     /* sysfs */
     FILE* powerstate = fopen("/sys/power/state", "w");
     /* check if file was opened correctly */
