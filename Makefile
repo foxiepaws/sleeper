@@ -8,6 +8,9 @@ BINDIR = bin
 
 TARGET = sleeper
 
+CFLAGS = -std=c99
+
+
 SHELL=/bin/sh
 SRC = $(wildcard ${SRCDIR}/*.c)
 OBJ = ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
@@ -17,7 +20,7 @@ all: sleeper
 
 ${OBJ}: $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@echo CC $<
-	@${CC} -o $@ -I${INCDIR} -c ${CFLAGS} $<
+	@${CC} -o $@ -I${INCDIR} -c ${CFLAGS} ${DEFINES} $<
 
 sleeper: ${OBJ}
 	@echo CC -o ${BINDIR}/${TARGET}
