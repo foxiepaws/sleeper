@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  sleep.c
+ *       Filename:  sysfs.c
  *
- *    Description:  sleeps a laptop
+ *    Description:  code reuse!
  *
  *        Version:  1.0
- *        Created:  12/13/14 16:27:30
+ *        Created:  13/12/14 21:58:06
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -15,21 +15,17 @@
  * =====================================================================================
  */
 
-
-#include "sleep.h"
+#include "sysfs.h"
 
 /*
  * ===  FUNCTION  ======================================================================
- *         Name:  sw_sleep
- *  Description:  code to sleep computer
+ *         Name:  write_powerstate
+ *  Description:  write to /sys/power/state
  * =====================================================================================
  */
 void
-sw_sleep () {
-#if defined(__FreeBSD__)
-    /* write memory suspend trigger code */
-#elif defined (__linux__)
-    #if defined(sysfs)
+write_powerstate ( char* state )
+{
     /* sysfs */
     FILE* powerstate = fopen("/sys/power/state", "w");
     /* check if file was opened correctly */
@@ -37,7 +33,7 @@ sw_sleep () {
         fprintf(stderr, "Encountered EACCES on /sys/power/state. check permissions\n");
         exit(EXIT_FAILURE);
     }
-    int wb = fprintf(powerstate, "mem\n");
+    int wb = fprintf(powerstate, "%s\n", state);
     /* check we wrote as well */
     if (wb < 0) {
         fclose(powerstate);
@@ -45,10 +41,5 @@ sw_sleep () {
         exit(EXIT_FAILURE);
     }
     fclose(powerstate);
-    #elif defined(systemd)
-    /* systemd sleep activation via dbus/logind */
-
-    #endif
-#endif
-}
-/* -----  end of function sw_sleep  ----- */
+}		/* -----  end of function write_powerstate  ----- */
+ 

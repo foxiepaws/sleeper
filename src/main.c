@@ -17,8 +17,7 @@
 
 
 #include "generic.h"
-#include "sleep.h"
-#include "hibernate.h"
+#include "powermgmt.h"
 #include <getopt.h>
 
 /*

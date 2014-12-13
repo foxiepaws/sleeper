@@ -1,9 +1,9 @@
 /*
  * =====================================================================================
  *
- *       Filename:  hibernate.h
+ *       Filename:  powermgmt.h
  *
- *    Description:  header file for hibernate.c
+ *    Description:  header file for powermgmt.c
  *
  *        Version:  1.0
  *        Created:  12/13/14 16:27:30
@@ -19,11 +19,11 @@
 
 #include "generic.h"
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  sw_hiber
- *  Description:  
- * =====================================================================================
- */
+#if defined(sysfs)
+    #include "sysfs.h"
+#endif
+
+void sw_sleep ();
 void sw_hiber ();
+
  
