@@ -2,5 +2,6 @@ todo
 ====
 
 - Add FreeBSD support.
-- Add alternative interface for Linux
+- Add non-sysfs method for Linux
+
 
