@@ -74,6 +74,6 @@ fail:
     fprintf(stderr,
             "Usage: %s [-s|-H]\n",
             argv[0]);
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
 }
 /* ----------  end of function main  ---------- */
