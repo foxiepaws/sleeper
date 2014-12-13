@@ -1,9 +1,9 @@
 /*
  * =====================================================================================
  *
- *       Filename:  syswriter.c
+ *       Filename:  main.c
  *
- *    Description:  Writes to sysfs, for sleep and hibernate.
+ *    Description:  sleep and hibernate.
  *
  *        Version:  1.0
  *        Created:  12/13/14 16:26:55
@@ -16,7 +16,7 @@
  */
 
 
-#include "syswriter.h"
+#include "generic.h"
 #include "sleep.h"
 #include "hibernate.h"
 

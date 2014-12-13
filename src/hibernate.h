@@ -3,7 +3,7 @@
  *
  *       Filename:  hibernate.h
  *
- *    Description:  header file for sleep.c
+ *    Description:  header file for hibernate.c
  *
  *        Version:  1.0
  *        Created:  12/13/14 16:27:30
@@ -17,7 +17,7 @@
  */
 
 
-#include "syswriter.h"
+#include "generic.h"
 
 /* 
  * ===  FUNCTION  ======================================================================

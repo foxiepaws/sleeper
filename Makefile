@@ -6,20 +6,20 @@ INCDIR = ${SRCDIR}
 OBJDIR = src
 BINDIR = bin
 
-TARGET = syswriter
+TARGET = sleeper
 
 SHELL=/bin/sh
 SRC = $(wildcard ${SRCDIR}/*.c)
 OBJ = ${SRC:${SRCDIR}/%.c=${OBJDIR}/%.o}
 
 
-all: syswriter
+all: sleeper
 
 ${OBJ}: $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@echo CC $<
 	@${CC} -o $@ -I${INCDIR} -c ${CFLAGS} $<
 
-syswriter: ${OBJ}
+sleeper: ${OBJ}
 	@echo CC -o ${BINDIR}/${TARGET}
 	@mkdir -p ${BINDIR}
 	@${CC} -I${INCDIR} -o ${BINDIR}/${TARGET} ${OBJ} ${LDFLAGS} ${CFLAGS} ${DEFINES}
