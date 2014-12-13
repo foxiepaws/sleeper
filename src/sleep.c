@@ -35,6 +35,7 @@ sw_sleep () {
     /* sysfs */
     FILE* powerstate = fopen("/sys/power/state", "w");
     fprintf(powerstate, "mem\n");
+    fclose(powerstate);
     #endif
 #endif
 }
