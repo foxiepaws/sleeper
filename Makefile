@@ -5,6 +5,7 @@ SRCDIR = src
 INCDIR = ${SRCDIR}
 OBJDIR = src
 BINDIR = bin
+INSTALLDIR = /usr/local/sbin
 
 TARGET = sleeper
 
@@ -35,3 +36,9 @@ remove: clean
 	@echo deleting binary
 	@rm -f ${BINDIR}/${TARGET}
 	@rm -r ${BINDIR}
+
+install: sleeper
+	mkdir -p ${INSTALLDIR} 
+	cp ${BINDIR}/${TARGET} ${INSTALLDIR}/${TARGET}
+	chmod 4555 ${INSTALLDIR}/${TARGET}
+
