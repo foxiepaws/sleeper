@@ -1,6 +1,6 @@
 
 CC = gcc
-DEFINES += -Dusesysfs
+DEFINES += -Dsysfs
 SRCDIR = src
 INCDIR = ${SRCDIR}
 OBJDIR = src

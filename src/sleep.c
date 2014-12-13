@@ -11,7 +11,6 @@
  *       Compiler:  gcc
  *
  *         Author:  Olivia Theze (foxiepaws), fox@foxiepa.ws
- *   Organization:  
  *
  * =====================================================================================
  */
@@ -19,25 +18,37 @@
 
 #include "sleep.h"
 
-/* 
+/*
  * ===  FUNCTION  ======================================================================
  *         Name:  sw_sleep
- *  Description:  
+ *  Description:  code to sleep computer
  * =====================================================================================
  */
 void
 sw_sleep () {
-#ifdef __FreeBSD__
+#if defined(__FreeBSD__)
     /* write memory suspend trigger code */
-#endif
-#ifdef __linux__
-    #ifdef usesysfs
+#elif defined (__linux__)
+    #if defined(sysfs)
     /* sysfs */
     FILE* powerstate = fopen("/sys/power/state", "w");
-    fprintf(powerstate, "mem\n");
+    /* check if file was opened correctly */
+    if (powerstate == NULL && errno == EACCES) {
+        fprintf(stderr, "Encountered EACCES on /sys/power/state. check permissions\n");
+        exit(EXIT_FAILURE);
+    }
+    int wb = fprintf(powerstate, "mem\n");
+    /* check we wrote as well */
+    if (wb < 0) {
+        fclose(powerstate);
+        fprintf (stderr, "Failed to write to /sys/power/state\n");
+        exit(EXIT_FAILURE);
+    }
     fclose(powerstate);
+    #elif defined(systemd)
+    /* systemd sleep activation via dbus/logind */
+
     #endif
 #endif
 }
 /* -----  end of function sw_sleep  ----- */
- 
