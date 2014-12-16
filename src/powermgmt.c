@@ -34,7 +34,7 @@ sw_sleep (int force) {
         printf("%s%s",
                 "Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
                 "Are you sure you want to continue? [y/N] ");
-        scanf("%1[ynYN\n]", str);
+        scanf("%1c", &str);
     } else {
         str = "y";
     }
