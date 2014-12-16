@@ -24,10 +24,31 @@
  *  Description:  code to sleep computer
  * =====================================================================================
  */
+
 void
-sw_sleep () {
+sw_sleep (int force) {
 #if defined(__FreeBSD__)
     /* write memory suspend trigger code */
+    char str;
+    if (force < 1) {
+        printf("%s%s",
+               "Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
+               "Are you sure you want to continue? [y/N] ");
+        scanf("%1[ynYN\n]", str);
+    } else {
+        str = "y";
+    }
+     
+    if (str == 'y' || str == 'Y') { 
+        power_pm_suspend(POWER_SLEEP_STATE_SUSPEND); /* I beleive this is the same as 
+                                                        sleep, vs standby which has the 
+                                                        CPU in a low power state instead
+                                                        of losing CPU context. 
+                                                      */
+    } else {
+        printf ("Nevermind\n");
+        exit (1);
+    }
 #elif defined (__linux__)
     #if defined(sysfs)
     /* use the sysfs code */
@@ -48,9 +69,29 @@ sw_sleep () {
  */
 
 void
-sw_hiber () {
+sw_hiber (int force) {
 #if defined(__FreeBSD__)
     /* write memory suspend trigger code */
+    char str;
+    if (force < 1) {
+        printf("%s%s",
+               "Hibernate on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
+               "Are you sure you want to continue? [y/N] ");
+        scanf("%1[ynYN\n]", str);
+    } else {
+        str = "y";
+    }
+     
+    if (str == 'y' || str == 'Y') { 
+        power_pm_suspend(POWER_SLEEP_STATE_HIBERNATE); /* I beleive this is the same as 
+                                                        sleep, vs standby which has the 
+                                                        CPU in a low power state instead
+                                                        of losing CPU context. 
+                                                      */
+    } else {
+        printf ("Nevermind\n");
+        exit (1);
+    }
 #elif defined (__linux__)
     #if defined(sysfs)
     write_powerstate("disk");

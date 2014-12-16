@@ -18,12 +18,16 @@
 
 
 #include "generic.h"
-
+#if defined(__linux__)
 #if defined(sysfs)
     #include "sysfs.h"
 #endif
+#elif defined(__FreeBSD__)
+    /* use the power management API under FreeBSD */
+    #include <sys/power.h>
+#endif 
 
-void sw_sleep ();
-void sw_hiber ();
+void sw_sleep (int);
+void sw_hiber (int);
 
  
