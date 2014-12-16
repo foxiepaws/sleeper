@@ -32,7 +32,7 @@ main ( int argc, char *argv[] )
     if (argc < 2) goto fail;
     unsigned int fgs = 0;
     int o;
-    while ((o = getopt(argc,argv,"sH")) != -1) {
+    while ((o = getopt(argc,argv,"fsH")) != -1) {
         switch (o) {
             case 's': /* sleep */
                 if (fgs & 1) {
