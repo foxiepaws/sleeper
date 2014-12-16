@@ -54,6 +54,7 @@ main ( int argc, char *argv[] )
                 }
                 fgs += 4;
                 break;
+                ;;
             default:
                 goto fail;
                 ;;
@@ -64,25 +65,21 @@ main ( int argc, char *argv[] )
         goto fail;
     }
     if (fgs == 1) {
-        if (fgs & 4) {
-            sw_sleep(1);
-        } else {
-    	    printf("attempting to sleep\n");
-            sw_sleep(0);
-	        printf("Welcome Back =)\n");
-        }
+        printf("attempting to sleep\n");
+        sw_sleep(0);
+	    printf("Welcome Back =)\n");
     }
     if (fgs == 2) {
-        if (fgs & 4) {
-            sw_hiber(1);
-        } else {
-    	    printf("attempting to hibernate\n");
-            sw_hiber(0);
-	        printf("Welcome Back =)\n");
-        }
-	printf("Welcome Back =)\n");
+        printf("attempting to hibernate\n");
+        sw_hiber(0);
+	    printf("Welcome Back =)\n");
     }
-
+    if (fgs == 5) {
+        sw_sleep(1);
+    } 
+    if (fgs == 6) {
+        sw_hiber(1);
+    }
     return EXIT_SUCCESS;
 fail:
     fprintf(stderr,
