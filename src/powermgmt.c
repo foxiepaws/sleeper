@@ -31,22 +31,18 @@ sw_sleep (int force) {
     /* write memory suspend trigger code */
     char str;
     if (force < 1) {
-        printf("%s%s",
-               "Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
-               "Are you sure you want to continue? [y/N] ");
+        fprintf("%s%s",
+                "Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
+                "Are you sure you want to continue? [y/N] ");
         scanf("%1[ynYN\n]", str);
     } else {
         str = "y";
     }
      
     if (str == 'y' || str == 'Y') { 
-        power_pm_suspend(POWER_SLEEP_STATE_SUSPEND); /* I beleive this is the same as 
-                                                        sleep, vs standby which has the 
-                                                        CPU in a low power state instead
-                                                        of losing CPU context. 
-                                                      */
+        write_powerstate("mem");
     } else {
-        printf ("Nevermind\n");
+        fprintf (stderr,"Nevermind\n");
         exit (1);
     }
 #elif defined (__linux__)
@@ -71,27 +67,8 @@ sw_sleep (int force) {
 void
 sw_hiber (int force) {
 #if defined(__FreeBSD__)
-    /* write memory suspend trigger code */
-    char str;
-    if (force < 1) {
-        printf("%s%s",
-               "Hibernate on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
-               "Are you sure you want to continue? [y/N] ");
-        scanf("%1[ynYN\n]", str);
-    } else {
-        str = "y";
-    }
-     
-    if (str == 'y' || str == 'Y') { 
-        power_pm_suspend(POWER_SLEEP_STATE_HIBERNATE); /* I beleive this is the same as 
-                                                        sleep, vs standby which has the 
-                                                        CPU in a low power state instead
-                                                        of losing CPU context. 
-                                                      */
-    } else {
-        printf ("Nevermind\n");
-        exit (1);
-    }
+       fprintf (stderr,"FreeBSD does not have a memory image loader for hibernate, exiting.\n");
+       exit (1);
 #elif defined (__linux__)
     #if defined(sysfs)
     write_powerstate("disk");

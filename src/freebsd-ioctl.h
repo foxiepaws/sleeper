@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  powermgmt.h
+ *       Filename:  freebsd-ioctl.h
  *
- *    Description:  header file for powermgmt.c
+ *    Description:  
  *
  *        Version:  1.0
- *        Created:  12/13/14 16:27:30
+ *        Created:  16/12/14 21:23:30
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,17 +16,11 @@
  * =====================================================================================
  */
 
-
 #include "generic.h"
-#if defined(__linux__)
-#if defined(sysfs)
-    #include "sysfs.h"
-#endif
-elif defined(__FreeBSD__)
-    #include "freebsd-ioctl.h"
-#endif 
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <dev/acpica/acpiio.h>
+#include <contrib/dev/acpica/include/acpi.h>
 
-void sw_sleep (int);
-void sw_hiber (int);
-
- 
+#define ACPIDEV "/dev/acpi"      
