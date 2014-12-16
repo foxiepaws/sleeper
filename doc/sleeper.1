@@ -1,0 +1,24 @@
+.TH SLEEPER 1
+.SH NAME
+sleeper \- Simple Suspend/Hibernate helper for Unixlike systems.
+.SH SYNOPSIS
+.B sleeper
+[\fB-f\fR] [\fB-s\fR|\fB-H\fR]
+.SH DESCRIPTION
+.B sleeper
+makes it easier to suspend/hibernate laptops running \fBLinux\fR and 
+\fBFreeBSD\fR. Works via sysfs on Linux and using sys/power.h on 
+FreeBSD
+.SH OPTIONS
+.TP
+.BR \-f
+Set the force flag, which also turns off output. 
+.TP
+.BR \-s
+Sleep.
+.TP
+.BR \-H
+Hibernate.
+.SH AUTHOR
+Olivia Theze (foxiepaws) <\fIfox@foxiepa.ws\fR>
+
