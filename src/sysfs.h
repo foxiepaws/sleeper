@@ -15,8 +15,9 @@
  * =====================================================================================
  */
 
-
+#if defined(__linux__) && defined(sysfs)
 #include "generic.h"
 
 void write_powerstate (char*);
+#endif
 

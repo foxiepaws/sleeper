@@ -14,7 +14,7 @@
  *
  * =====================================================================================
  */
-
+#if defined(__linux__) && defined(sysfs)
 #include "sysfs.h"
 
 /*
@@ -40,5 +40,6 @@ write_powerstate ( char* state ) {
         exit(EXIT_FAILURE);
     }
     fclose(powerstate);
-}		/* -----  end of function write_powerstate  ----- */
- 
+}
+/* -----  end of function write_powerstate  ----- */
+#endif

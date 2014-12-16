@@ -18,7 +18,7 @@
 
 
 /* code is based off of acpiconf. */
-
+#if defined(__FreeBSD__)
 #include "freebsd-ioctl.h"
 
 
@@ -43,4 +43,4 @@ void write_powerstate(char* state) {
         fprintf(stderr, "\n");
     }
 }
-
+#endif
