@@ -36,11 +36,11 @@ void write_powerstate(char* state) {
         acpifd = open(ACPIDEV, O_RDONLY);
     }
     if (acpifd == -1) {
-        fprintf ( stderr, "\n" );
+        fprintf ( stderr, "failed to open" ACPIDEV "\n" );
     }
 
     if (ioctl(acpifd, ACPIIO_REQSLPSTATE, &sleeptype) != 0) {
-        fprintf(stderr, "\n");
+        fprintf(stderr, "Failed to request sleep type %d\n", sleeptype);
     }
 }
 #endif

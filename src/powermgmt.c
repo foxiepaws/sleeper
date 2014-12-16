@@ -31,12 +31,11 @@ sw_sleep (int force) {
     /* write memory suspend trigger code */
     char str;
     if (force < 1) {
-        printf("%s%s",
-                "Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
-                "Are you sure you want to continue? [y/N] ");
+        printf("Sleep on FreeBSD is considered an \033[1mEXPERIMENTAL\033[0m feature\n"
+               "Are you sure you want to continue? [y/N] ");
         scanf("%1c", &str);
     } else {
-        str = "y";
+        str = 'y';
     }
      
     if (str == 'y' || str == 'Y') { 
