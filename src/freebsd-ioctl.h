@@ -25,5 +25,5 @@
 
 #define ACPIDEV "/dev/acpi" 
 
-void write_powerstate (char);
+void write_powerstate (char*);
 #endif
