@@ -10,7 +10,7 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Olivia Theze (foxiepaws), fox@foxiepa.ws
+ *         Author:  Allie Theze (foxiepaws), fox@foxiepa.ws
  *   Organization:  
  *
  * =====================================================================================
