@@ -22,7 +22,9 @@
 #if defined(sysfs)
     #include "sysfs.h"
 #endif
-#elif defined(__FreeBSD__)
+#endif
+
+#if defined(__FreeBSD__)
     #include "freebsd-ioctl.h"
 #endif 
 

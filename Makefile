@@ -1,16 +1,20 @@
 
-CC = gcc
-DEFINES += -Dsysfs
-SRCDIR = src
-INCDIR = ${SRCDIR}
-OBJDIR = src
-BINDIR = bin
-INSTALLDIR = /usr/local/sbin
+CC ?= gcc
+SRCDIR ?= src
+INCDIR += -I${SRCDIR}
+OBJDIR ?= src
+BINDIR ?= bin
+INSTALLDIR ?= /usr/local/sbin
 
-TARGET = sleeper
+TARGET ?= sleeper
 
-CFLAGS = -std=c99
+CFLAGS += -std=c99
 
+
+UNAME=$(shell uname -s)
+ifeq (${UNAME},FreeBSD) 
+INCDIR += -I/sys/
+endif 
 
 SHELL=/bin/sh
 SRC = $(wildcard ${SRCDIR}/*.c)
@@ -21,12 +25,12 @@ all: sleeper
 
 ${OBJ}: $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@echo CC $<
-	@${CC} -o $@ -I${INCDIR} -c ${CFLAGS} ${DEFINES} $<
+	${CC} -o $@ ${INCDIR} -c ${CFLAGS} ${DEFINES} $<
 
 sleeper: ${OBJ}
 	@echo CC -o ${BINDIR}/${TARGET}
 	@mkdir -p ${BINDIR}
-	@${CC} -I${INCDIR} -o ${BINDIR}/${TARGET} ${OBJ} ${LDFLAGS} ${CFLAGS} ${DEFINES}
+	${CC} -I${INCDIR} -o ${BINDIR}/${TARGET} ${OBJ} ${LDFLAGS} ${CFLAGS} ${DEFINES}
 
 clean:
 	@echo cleaning
